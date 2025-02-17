@@ -1,49 +1,50 @@
-import React from "react";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Tabs } from "expo-router";
-import { Platform } from "react-native";
+import {
+  Roboto_400Regular,
+  Roboto_500Medium,
+  Roboto_900Black,
+  useFonts,
+} from "@expo-google-fonts/roboto";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
+import "react-native-reanimated";
 
-type NameIcon = 'home' | 'code';
+import "../assets/global.css";
 
-function TabBarIcon({ name, color }: { name: NameIcon; color: string }) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} name={name} color={color} />;
-}
+// Prevent the splash screen from auto-hiding before asset loading is complete.
+SplashScreen.preventAutoHideAsync();
 
-export default function TabLayout() {
+export default function RootLayout() {
+  const [loaded, error] = useFonts({
+    Roboto_400Regular,
+    Roboto_500Medium,
+    Roboto_900Black,
+  });
+
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
+
   return (
-    <Tabs
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: Platform.select({
-          ios: { position: "absolute" },
-          default: {},
-        }),
-      }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Home",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon
-              name="home"
-              color={color}
-            />
-          ),
+    <>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: "transparent" },
+          animation: "fade",
         }}
-      />
-      <Tabs.Screen
-        name="two"
-        options={{
-          title: "Tab Two",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon
-              name="code"
-              color={color}
-            />
-          ),
-        }}
-      />
-    </Tabs>
+      >
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="game" options={{ headerShown: false }} />
+      </Stack>
+      <StatusBar style="auto" />
+    </>
   );
 }
