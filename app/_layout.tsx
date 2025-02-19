@@ -1,7 +1,7 @@
 import {
   Roboto_400Regular,
   Roboto_500Medium,
-  Roboto_900Black,
+  Roboto_700Bold,
   useFonts,
 } from "@expo-google-fonts/roboto";
 import { Stack } from "expo-router";
@@ -19,10 +19,11 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({
     Roboto_400Regular,
     Roboto_500Medium,
-    Roboto_900Black,
+    Roboto_700Bold,
   });
 
   useEffect(() => {
+    console.log("loading",loaded, error);
     if (loaded || error) {
       SplashScreen.hideAsync();
     }
@@ -42,7 +43,8 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="game" options={{ headerShown: false }} />
+        <Stack.Screen name="playAlone" options={{ headerShown: false }} />
+        <Stack.Screen name="playWithFriends" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />
     </>
