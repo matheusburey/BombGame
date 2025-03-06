@@ -5,7 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import BombTimer from "../components/bombTimer";
+import BombTimer from "../components/BombTimer";
 import Logo from "../components/Logo";
 import { useRef } from "react";
 import { router } from "expo-router";

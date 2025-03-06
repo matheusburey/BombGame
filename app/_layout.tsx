@@ -23,7 +23,6 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    console.log("loading",loaded, error);
     if (loaded || error) {
       SplashScreen.hideAsync();
     }
@@ -45,6 +44,8 @@ export default function RootLayout() {
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="playAlone" options={{ headerShown: false }} />
         <Stack.Screen name="playWithFriends" options={{ headerShown: false }} />
+        <Stack.Screen name="disarmed" options={{ headerShown: false }} />
+        <Stack.Screen name="exploded" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />
     </>
