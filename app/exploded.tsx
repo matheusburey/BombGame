@@ -17,9 +17,9 @@ export default function Exploded() {
       <TouchableOpacity
         onPress={() => router.back()}
         activeOpacity={0.7}
-        className="items-center bg-gray-600 p-4 rounded-lg mt-12 w-1/2"
+        className="items-center bg-gray-600 p-4 rounded-lg mt-12 w-full"
       >
-        <Text className="text-2xl font-alt text-white">Jogar solo</Text>
+        <Text className="text-2xl font-alt text-white">Voltar para o início</Text>
       </TouchableOpacity>
     </View>
   );

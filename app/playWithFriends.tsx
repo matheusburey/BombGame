@@ -36,7 +36,7 @@ export default function PlayWithFriends() {
     <ScrollView className="flex-1 m-4 mt-24">
       <Logo />
       <View className="flex-row justify-center">
-        <BombTimer />
+        <BombTimer bombTimeInSeconds={60} />
       </View>
       <View className="items-center">
         <Text className="text-2xl font-body mt-9">Dica de senha:</Text>

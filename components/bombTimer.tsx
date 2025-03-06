@@ -1,6 +1,12 @@
-import { ImageBackground, Text, View } from "react-native";
+import { ImageBackground, Text } from "react-native";
 
-export default function BombTimer() {
+interface BombTimerProps {
+  bombTimeInSeconds: number;
+}
+
+export default function BombTimer({ bombTimeInSeconds }: BombTimerProps) {
+  const minutes = Math.floor(bombTimeInSeconds / 60).toString().padStart(2, "0");
+  const seconds = (bombTimeInSeconds % 60).toString().padStart(2, "0");
   return (
     <ImageBackground
       source={require("../assets/images/bomb.png")}
@@ -14,7 +20,7 @@ export default function BombTimer() {
         paddingLeft: 14,
       }}
     >
-      <Text className="text-white text-2xl font-bold">00:00</Text>
+      <Text className="text-white text-2xl font-bold">{minutes}:{seconds}</Text>
     </ImageBackground>
   );
 }
