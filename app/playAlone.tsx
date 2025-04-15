@@ -1,15 +1,14 @@
 import {
   Text,
   View,
-  TextInput,
   ScrollView,
   TouchableOpacity,
-  Keyboard,
   Vibration,
 } from "react-native";
 import BombTimer from "../components/BombTimer";
 import Logo from "../components/Logo";
-import { useEffect, useRef, useState } from "react";
+import PinInputs from "../components/PinInputs";
+import { useEffect, useState } from "react";
 import { router } from "expo-router";
 import QUESTION from "../constants/questions";
 
@@ -22,10 +21,6 @@ export default function PlayWithFriends() {
   const [error, setError] = useState(false);
 
   const [pin, setPin] = useState(["", "", ""]);
-
-  const input1 = useRef<any>();
-  const input2 = useRef<any>();
-  const input3 = useRef<any>();
 
   function validatePassword() {
     if (pin.join("") === answer.toString()) {
@@ -77,41 +72,7 @@ export default function PlayWithFriends() {
           {question && "Quanto é " + question + "?"}
         </Text>
       </View>
-      <View className="justify-evenly flex-row">
-        <TextInput
-          keyboardType="number-pad"
-          editable={started}
-          maxLength={1}
-          ref={input1}
-          onChangeText={(text) => {
-            text && input2.current.focus();
-            setPin([text, pin[1], pin[2]]);
-          }}
-          className="border rounded text-center text-xl mt-8 w-14"
-        />
-        <TextInput
-          keyboardType="number-pad"
-          editable={started}
-          maxLength={1}
-          ref={input2}
-          onChangeText={(text) => {
-            text && input3.current.focus();
-            setPin([pin[0], text, pin[2]]);
-          }}
-          className="border rounded text-center text-xl mt-8 w-14"
-        />
-        <TextInput
-          ref={input3}
-          editable={started}
-          onChangeText={(text) => {
-            text && Keyboard.dismiss();
-            setPin([pin[0], pin[1], text]);
-          }}
-          keyboardType="number-pad"
-          maxLength={1}
-          className="border rounded text-center text-xl mt-8 w-14"
-        />
-      </View>
+      <PinInputs started={started} pin={pin} setPin={setPin} />
       <Text className="text-2xl text-red-500 font-body text-center mt-8">
         {error && "Código invalido"}
       </Text>
