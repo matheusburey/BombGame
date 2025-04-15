@@ -84,7 +84,7 @@ export default function PlayWithFriends() {
         <View className="items-center">
           <TextInput
             placeholder="Digite a pergunta"
-            className="border rounded text-xl mt-8 w-3/4"
+            className="border rounded text-xl mt-8 w-3/4 h-14"
             value={question}
             onChangeText={setQuestion}
           />
